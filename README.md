@@ -39,23 +39,23 @@ This makes the application more **efficient, scalable, and production-ready**, e
 
 User uploads their resume (PDF) via the frontend UI.
 
-The file is uploaded either directly to AWS S3 using a pre-signed URL or via a backend proxy API.
+- The file is uploaded either directly to AWS S3 using a pre-signed URL or via a backend proxy API.
 
-The file is not stored on your server, ensuring secure and scalable storage in the cloud.
+- The file is not stored on your server, ensuring secure and scalable storage in the cloud.
 
-After successful upload, the backend sends a message to AWS SQS with the S3 file path/key.
+- After successful upload, the backend sends a message to AWS SQS with the S3 file path/key.
 
-A worker service (EC2 instance, Node.js script, or AWS Lambda) continuously polls the SQS queue.
+- A worker service (EC2 instance, Node.js script, or AWS Lambda) continuously polls the SQS queue.
 
-When a new message arrives, the worker fetches the corresponding file from S3.
+- When a new message arrives, the worker fetches the corresponding file from S3.
 
-The worker extracts text from the resume using pdf-parse or another PDF library.
+- The worker extracts text from the resume using pdf-parse or another PDF library.
 
-The extracted text is sent to an LLM (e.g., OpenAI GPT or Gemini) for analysis and feedback.
+- The extracted text is sent to an LLM (e.g., OpenAI GPT or Gemini) for analysis and feedback.
 
-The LLM returns suggestions, feedback, or a summary of the resume.
+- The LLM returns suggestions, feedback, or a summary of the resume.
 
-The result is optionally stored in a database or sent back to the user via email or UI.
+- The result is optionally stored in a database or sent back to the user via email or UI.
 
 
 ## 🖼️ Demo
