@@ -34,7 +34,8 @@
 
 This makes the application more **efficient, scalable, and production-ready**, especially in **serverless or container-based environments**.
 
-🚀 Future Scope / Future Advancement
+
+## 🚀 Future Scope / Future Advancement
 
 User uploads their resume (PDF) via the frontend UI.
 
