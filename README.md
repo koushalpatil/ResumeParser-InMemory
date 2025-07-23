@@ -7,7 +7,7 @@
 ### 1. File Upload
 
 - Files are uploaded via frontend using `multipart/form-data`.
-- On the backend, `multer` is configured with `memoryStorage` instead of `diskStorage`.
+– On the backend, multer is configured with memoryStorage instead of diskStorage. Alternatively, multer can also be integrated with cloud storage providers (like Cloudinary, AWS S3) to store files directly.
 
 ### 2. In-Memory Buffer Handling
 
