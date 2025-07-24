@@ -11,6 +11,7 @@ class ResumeController {
   async extractText(req, res) {
     try {
       const file = req.file;
+      const jobDescription = req.body.jobDescription;
 
       if (!file) {
         return res.status(400).json({
@@ -18,11 +19,20 @@ class ResumeController {
         });
       }
 
+      if (!jobDescription || jobDescription.trim() === "") {
+        return res.status(400).json({
+          error: "Job description is required for analysis.",
+        });
+      }
+
       const extractedText = await PdfService.extractTextFromPdfBuffer(
         file.buffer
       );
 
-      const analysis = await this.aiService.analyzeResume(extractedText);
+      const analysis = await this.aiService.analyzeResume(
+        extractedText,
+        jobDescription
+      );
 
       res.status(200).json({
         success: true,
@@ -30,6 +40,7 @@ class ResumeController {
         fileSize: file.size,
         extractedText,
         analysis,
+        jobDescription,
       });
     } catch (error) {
       console.error("Error processing resume analysis:", error);
